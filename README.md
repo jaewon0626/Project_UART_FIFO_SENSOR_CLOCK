@@ -25,16 +25,10 @@
 #### FSM (Finite State Machine) 기반 센서 제어
 > 마이크로컨트롤러(MCU) 없이 FPGA의 순수 로직만으로 DHT11의 독자적인 통신 규격(1-Wire)을 구현.
 > 타이밍이 매우 중요한 비동기 통신을 처리하기 위해 10us 단위의 Tick Generator와 정밀한 상태 머신(State Machine) 설계.
-
-> 기존의 IP를 사용하는 대신 Datasheet의 Timing Diagram을 분석하여 Start, Response, Data Read의 전 과정을 직접 설계함.
-> -> 하드웨어 레벨에서의 타이밍 제어와 프로토콜 이해도 향상.
-
-<img width="48%" alt="DHT11 Timing" src="https://your-image-url-here" />
-<img width="48%" alt="FSM State Diagram" src="https://your-image-url-here" />
+> Datasheet의 Timing Diagram을 분석하여 Start, Response, Data Read의 전 과정을 직접 설계함.
 <br>
 
 ### 2. 동작 방식 (Key Operation Logic)
-<img width="100%" alt="Simulation Waveform" src="https://your-image-url-here" />
 
 #### 클록 분주 (Clock Division) : 
 시스템 클록(100MHz)을 용도에 맞게 분주하여 사용.
@@ -60,13 +54,13 @@
 <br>
 
 ### 3. 장단점
-#### 장점
+#### [장점]
 ##### 100% 하드웨어 로직으로 구현되어 MCU 대비 매우 빠른 응답 속도와 병렬 처리(Parallelism) 가능.
 ##### FIFO를 적용하여 UART 통신 시 데이터 오버런(Overrun) 방지 및 신뢰성 확보.
 ##### 모듈화(Modularity) 설계를 통해 각 기능(시계, 센서, 통신)의 독립적 디버깅 및 유지 보수 용이.
 ##### 파라미터(Parameter) 기반 설계로 클록 주파수나 Baud Rate 변경 시 유연한 대처 가능.
 
-#### 단점 (및 극복 과정)
+#### [단점] (및 해결 과정)
 ##### FSM 설계 시 타이밍 마진(Timing Margin) 계산이 까다로움 (Simulation을 통해 최적값 도출).
 ##### 버튼 입력 시 기계적 채터링(Chattering) 발생 -> Debounce 회로를 추가하여 해결.
 ##### 단일 FND로 여러 정보를 표시해야 하는 한계 -> 모드 스위칭 MUX와 LED 인디케이터를 활용하여 UI 개선.

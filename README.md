@@ -2,8 +2,6 @@
 스톱워치, 초음파센서, 온습도센서
 
 ### FPGA & Verilog HDL Based Multi-Function System
-<img width="100%" alt="Main System View" src="https://your-image-url-here" />
-
 #### Verilog HDL을 사용하여 구현한 다기능 디지털 시계(Stopwatch, Watch, Timer) 및 환경 모니터링 시스템. FSM 설계를 통한 센서 제어(DHT11, HC-SR04)와 FIFO 기반의 UART 통신을 통합하여 하드웨어 제어 및 데이터 통신 프로젝트
 <br>
 <br>
